@@ -1,22 +1,20 @@
 package me.duco;
 
-import me.duco.file.FileHandler;
+import me.duco.file.FileFormatter;
 import me.duco.mqtt.MqttHandler;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Main {
 
-    public static void main(String[] arg) throws MqttException, InterruptedException {
-        Path homedir = Paths.get(System.getProperty("user.home"), "SolidMQ");
+    public static void main(String[] arg) throws InterruptedException {
 
         MqttHandler t = new MqttHandler();
-        t.get();
+        FileFormatter log = new FileFormatter(false);
+
+        log.log("Testing on time");
+        log.log("Testing some time later");
+        Thread.sleep(1000);
+        log.log("1 Second later");
 
     }
 }

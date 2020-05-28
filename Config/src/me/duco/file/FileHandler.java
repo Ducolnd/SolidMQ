@@ -3,28 +3,34 @@ package me.duco.file;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileHandler {
-    private String installpath, filename;
+    private String installpath, filename, topmsg;
     private File file;
+    private String filepath;
 
-    public FileHandler(String path, String name) {
+    public FileHandler(String path, String name, String top) {
         installpath = path;
         filename = name;
+        topmsg = top;
+        filepath = Paths.get(installpath, filename).toString();
         emptyLog();
     }
 
     public void emptyLog() {
-        file = new File(installpath + filename);
+        file = new File(filepath);
         try {
             if(!file.exists()) {
-                if(new File(installpath).mkdirs()) { //Create dirs if no existant
+                if( new File(installpath).mkdirs()) { //Create dirs if non existent
                     System.out.println("Created directory: " + installpath);
                 }
             }
 
             if(file.createNewFile()) {
-                System.out.println("Created file: " + installpath + filename);
+                writelog(topmsg);
+                System.out.println("Created file: " + filepath);
             }
 
         } catch (IOException e) {
@@ -33,10 +39,10 @@ public class FileHandler {
         }
     }
 
-    public void writelog() { // Will overwrite existing file
+    public void writelog(String data) { // Will overwrite existing file
         try {
-            FileWriter out = new FileWriter(installpath + filename);
-            out.write("Written from class");
+            FileWriter out = new FileWriter(filepath);
+            out.write(data);
             out.close();
 
             System.out.println("Written to file");
@@ -47,10 +53,10 @@ public class FileHandler {
         }
     }
 
-    public void appendLog(String what, String endline) { // Will append to file
+    public void appendLog(String what, String delimiter) { // Will append to file
         try {
-            FileWriter out = new FileWriter(installpath  + filename, true);
-            out.append(what).append(endline);
+            FileWriter out = new FileWriter(filepath, true);
+            out.append(what).append(delimiter);
             out.close();
 
             System.out.println("Appended to file");
@@ -62,7 +68,7 @@ public class FileHandler {
     }
 
     public void appendLog(String what) { // Overload appendLog method to allow default parameter.
-        appendLog(what, "\t");
+        appendLog(what, "\n");
     }
 
     public String readLog() {
