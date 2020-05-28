@@ -1,5 +1,5 @@
 #Default ignored files
-out/
+/out/
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
@@ -13,6 +13,10 @@ out/
 
 # Log file
 *.log
+
+# Kotlin bs
+*.kotlin_module
+*.kotlin_builtins
 
 # BlueJ files
 *.ctxt
