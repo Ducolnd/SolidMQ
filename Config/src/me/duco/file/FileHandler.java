@@ -29,8 +29,8 @@ public class FileHandler {
             }
 
             if(file.createNewFile()) {
-                writelog(topmsg);
                 System.out.println("Created file: " + filepath);
+                writelog(topmsg);
             }
 
         } catch (IOException e) {
@@ -45,7 +45,7 @@ public class FileHandler {
             out.write(data);
             out.close();
 
-            System.out.println("Written to file");
+            // System.out.println("Written to file");
 
         } catch (IOException e) {
             System.out.println("An error occurred:");
@@ -73,7 +73,7 @@ public class FileHandler {
 
     public String readLog() {
 
-        //ToDo implement log reading
+        //todo implement log reading
         return null;
     }
 }

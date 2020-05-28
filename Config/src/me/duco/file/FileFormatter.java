@@ -15,14 +15,16 @@ public class FileFormatter {
         secret = safe;
     }
 
-    public void log(String data) {
+    public void log(String data, String topic) {
         Path homedir = Paths.get(System.getProperty("user.home"), "SolidMQ");
-        FileHandler file = new FileHandler(homedir.toString(), "mainlog.txt", "Mainlog.txt file. Main logging file.");
+        String topicdir = Paths.get(homedir.toString(), topic).toString();
+
+        FileHandler log = new FileHandler(topicdir, "mainlog.txt", "Mainlog.txt file. Main logging file.");
 
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        file.appendLog(String.format("[%s] %s", currentTime.format(date), data));
+        log.appendLog(String.format("[%s] %s", currentTime.format(date), data));
     }
 
 }

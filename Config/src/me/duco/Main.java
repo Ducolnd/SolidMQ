@@ -11,13 +11,6 @@ public class Main {
         MqttHandler t = new MqttHandler();
         FileFormatter log = new FileFormatter(false);
 
-        t.handler();
-        t.get();
-
-        t.handler();
-        log.log("First Date - Fred epic song lofi ");
-
-        t.handler();
-
+        t.get("home/room/#");
     }
 }

@@ -28,9 +28,9 @@ public class MqttHandler {
         }
     }
 
-    public void get() throws MqttException {
+    public void get(String topic) throws MqttException {
         if (client.isConnected()) {
-            client.subscribe("topic");
+            client.subscribe(topic);
         }
     }
 }

@@ -10,12 +10,12 @@ public class Callback implements MqttCallback {
         System.out.println("Connecting was lost.");
     }
 
-    public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+    public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
         System.out.println("Message received: " + new String(mqttMessage.getPayload()));
 
         FileFormatter log = new FileFormatter(false);
 
-        log.log(new String(mqttMessage.getPayload()));
+        log.log(new String(mqttMessage.getPayload()), topic);
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
