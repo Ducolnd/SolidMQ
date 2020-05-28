@@ -1,5 +1,4 @@
 #Default ignored files
-/out/
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
@@ -35,3 +34,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/out/
+/my-mqtt-device-tcp192168178135/

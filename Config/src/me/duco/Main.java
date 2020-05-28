@@ -6,15 +6,18 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Main {
 
-    public static void main(String[] arg) throws InterruptedException {
+    public static void main(String[] arg) throws InterruptedException, MqttException {
 
         MqttHandler t = new MqttHandler();
         FileFormatter log = new FileFormatter(false);
 
-        log.log("Testing on time");
-        log.log("Testing some time later");
-        Thread.sleep(1000);
-        log.log("1 Second later");
+        t.handler();
+        t.get();
+
+        t.handler();
+        log.log("First Date - Fred epic song lofi ");
+
+        t.handler();
 
     }
 }

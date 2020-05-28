@@ -7,11 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileHandler {
-    private String installpath, filename, topmsg;
+    private final String installpath, filename, topmsg;
     private File file;
     private String filepath;
 
-    public FileHandler(String path, String name, String top) {
+    FileHandler(final String path, String name, String top) {
         installpath = path;
         filename = name;
         topmsg = top;

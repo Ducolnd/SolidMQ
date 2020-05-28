@@ -5,30 +5,32 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MqttHandler {
 
-    final String broker = "tcp://192.168.178.135";
-    final String clientId = "my-mqtt-device";
+    final String broker;
+    final String clientId;
+    final MqttClient client;
 
-    public void handler() throws MqttException, InterruptedException {
+    public MqttHandler() throws MqttException {
+        // Init mqtt connection with broker
+        broker = "tcp://192.168.178.135";
+        clientId = "my-mqtt-device";
+        client = new MqttClient(broker, clientId);
 
-        MqttClient client = new MqttClient(broker, "testtest32");
         client.connect();
-        MqttMessage msg = new MqttMessage();
-        msg.setPayload("infocom".getBytes());
+        client.setCallback(new Callback());
+    }
 
-        for(int i = 0; i < 5; i++) {
+    public void handler() throws MqttException {
+        if(client.isConnected()) {
+            MqttMessage msg = new MqttMessage();
+            msg.setPayload("newinfcosdf".getBytes());
+
             client.publish("test", msg);
-            Thread.sleep(1000);
         }
-
-        client.disconnect();
     }
 
     public void get() throws MqttException {
-        MqttClient client = new MqttClient(broker, clientId);
-
-        client.setCallback(new Callback());
-        client.connect();
-
-        client.subscribe("topic");
+        if (client.isConnected()) {
+            client.subscribe("topic");
+        }
     }
 }

@@ -22,7 +22,7 @@ public class FileFormatter {
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        file.appendLog(String.format("[%s] {%s}", currentTime.format(date), data));
+        file.appendLog(String.format("[%s] %s", currentTime.format(date), data));
     }
 
 }
