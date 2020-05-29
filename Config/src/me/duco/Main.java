@@ -1,20 +1,28 @@
 package me.duco;
 
+import me.duco.file.Configurations;
 import me.duco.file.FileFormatter;
 import me.duco.mqtt.MqttHandler;
+
 import org.eclipse.paho.client.mqttv3.MqttException;
+
+import java.io.IOException;
+import java.lang.module.Configuration;
+import java.util.Properties;
 
 import static java.lang.System.exit;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException, MqttException {
+    public static void main(String[] args) throws InterruptedException, MqttException, IOException {
 
         MqttHandler broker = new MqttHandler();
         FileFormatter log = new FileFormatter(false);
 
         if (!(args.length > 0)) { // No arguments so subscribing to everyting
-            broker.get("#");
+            Properties config = Configurations.readPropertiesFile();
+            System.out.println(config.getProperty("username"));
+            //broker.get("#");
 
         } else if (args[0] == "get") {
             if (args.length < 2) {

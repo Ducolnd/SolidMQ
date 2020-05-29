@@ -9,6 +9,7 @@
 
 # Compiled class file
 *.class
+/artifacts
 
 # Log file
 *.log
