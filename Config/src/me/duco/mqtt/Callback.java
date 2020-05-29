@@ -15,7 +15,7 @@ public class Callback implements MqttCallback {
 
         FileFormatter log = new FileFormatter(false);
 
-        log.log(new String(mqttMessage.getPayload()), topic);
+        log.log(new String(mqttMessage.getPayload()), topic, FileFormatter.Flag.SUB);
     }
 
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {

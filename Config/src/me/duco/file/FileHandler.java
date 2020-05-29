@@ -30,7 +30,7 @@ public class FileHandler {
 
             if(file.createNewFile()) {
                 System.out.println("Created file: " + filepath);
-                writelog(topmsg);
+                writelog(String.format("%s\n", topmsg));
             }
 
         } catch (IOException e) {
@@ -59,7 +59,7 @@ public class FileHandler {
             out.append(what).append(delimiter);
             out.close();
 
-            System.out.println("Appended to file");
+            // System.out.println("Appended to file"); for debug
 
         } catch (IOException e) {
             System.out.println("An error occurred:");
