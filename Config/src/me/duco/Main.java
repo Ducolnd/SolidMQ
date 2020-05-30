@@ -9,10 +9,14 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import java.io.IOException;
 import java.lang.module.Configuration;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.System.exit;
 
 public class Main {
+
+    private static final Logger LOGGER = Logger.getLogger( Main.class.getName() );
 
     public static void main(String[] args) throws InterruptedException, MqttException, IOException {
 
@@ -20,9 +24,7 @@ public class Main {
         FileFormatter log = new FileFormatter(false);
 
         if (!(args.length > 0)) { // No arguments so subscribing to everyting
-            Properties config = Configurations.readPropertiesFile();
-            System.out.println(config.getProperty("username"));
-            //broker.get("#");
+            broker.get("/home/#");
 
         } else if (args[0] == "get") {
             if (args.length < 2) {
@@ -32,13 +34,14 @@ public class Main {
 
             broker.get(args[1]); // Sub to given topic
 
-        } else if (args[0] == "pub") {
-            if (args.length < 3) {
-                System.out.println("You must select a topic and message respectively");
-                exit(0);
-            }
+        } else if (args[0] == "config") {
 
-            broker.set(args[2], args[1]); // data, topic
+
+        } else if (args[0] == "read") {
+
+        } else {
+            LOGGER.log(Level.WARNING, "Error, wrong usage. Usage: ");
         }
+
     }
 }

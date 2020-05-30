@@ -4,15 +4,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class FileFormatter {
+import static java.lang.System.exit;
 
-    public enum Flag {
-        PUB,
-        SUB
-    }
+public class FileFormatter {
 
     boolean secret;
 
@@ -20,16 +18,18 @@ public class FileFormatter {
         secret = safe;
     }
 
-    public void log(String data, String topic, Flag flag) {
+    public void log(String data, String topic) {
         Path homedir = Paths.get(System.getProperty("user.home"), "SolidMQ");
-        String topicdir = Paths.get(homedir.toString(), topic).toString();
 
-        FileHandler log = new FileHandler(topicdir, flag.toString() + "log.txt", "Mainlog.txt file. Main logging file.");
+        String[] tdir = topic.split("/");
+
+        String topicdir = Paths.get(homedir.toString(), String.join("/", Arrays.copyOfRange(tdir, 0, tdir.length - 1))).toString();
+
+        FileHandler log = new FileHandler(topicdir, tdir[tdir.length - 1] + "Log.txt",  String.format("Topic: None"));
 
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         log.appendLog(String.format("[%s] %s", currentTime.format(date), data));
     }
-
 }

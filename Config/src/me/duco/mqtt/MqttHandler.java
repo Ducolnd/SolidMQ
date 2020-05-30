@@ -20,19 +20,6 @@ public class MqttHandler {
         client.setCallback(new Callback());
     }
 
-    public void set(String data, String topic) throws MqttException {
-        if(client.isConnected()) {
-            MqttMessage msg = new MqttMessage();
-            msg.setPayload(data.getBytes());
-
-            client.publish(topic, msg);
-
-            FileFormatter log = new FileFormatter(false);
-            log.log(data, topic, FileFormatter.Flag.PUB);
-            System.out.println("Published message");
-        }
-    }
-
     public void get(String topic) throws MqttException {
         if (client.isConnected()) {
             client.subscribe(topic);

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Config:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Config_jar</output-path>
+    <root id="archive" name="Config.jar">
+      <element id="module-output" name="Config" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/paho/org.eclipse.paho.client.mqttv3/1.0.2/org.eclipse.paho.client.mqttv3-1.0.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
