@@ -24,9 +24,9 @@ public class Main {
         FileFormatter log = new FileFormatter(false);
 
         if (!(args.length > 0)) { // No arguments so subscribing to everyting
-            broker.get("/home/#");
+            broker.get("#");
 
-        } else if (args[0] == "get") {
+        } else if (args[0] == "-get") {
             if (args.length < 2) {
                 System.out.println("You must select a topic to listen to");
                 exit(0);
@@ -34,10 +34,10 @@ public class Main {
 
             broker.get(args[1]); // Sub to given topic
 
-        } else if (args[0] == "config") {
+        } else if (args[0] == "-config") {
 
 
-        } else if (args[0] == "read") {
+        } else if (args[0] == "-read") {
 
         } else {
             LOGGER.log(Level.WARNING, "Error, wrong usage. Usage: ");
